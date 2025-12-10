@@ -2,7 +2,6 @@ package com.hexagonal.hexagonal.adapter.out;
 
 import com.hexagonal.hexagonal.domain.model.Customer;
 import com.hexagonal.hexagonal.domain.port.out.CustomerRepository;
-import com.hexagonal.hexagonal.domain.valueobject.Contact;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -17,28 +16,31 @@ public class CustomerPersistenceAdapter implements CustomerRepository {
     }
 
     @Override
-    public Customer save(Customer customer) {
-        JpaCustomerEntity customerEntity = new JpaCustomerEntity(customer.getName(), customer.getMdp(), customer.getContact().getEmail(), customer.getContact().getTel(), customer.getDtn());
-        JpaCustomerEntity save = jpaCustomerRepository.save(customerEntity);
-        return new Customer(save.getCustomer_id(), save.getName(), save.getMdp(), new Contact(save.getEmail(), save.getTel()), save.getDtn());
+    public void save(Customer customer) {
+        JpaCustomerEntity customerEntity = new JpaCustomerEntity(customer.getName(), customer.getMdp(), customer.getEmail(), customer.getDtn());
+        jpaCustomerRepository.save(customerEntity);
     }
 
     @Override
     public Customer findByEmail(String email) {
-        Optional<JpaCustomerEntity> result = jpaCustomerRepository.findByEmail(email);
-        if(result.isPresent()){
-            JpaCustomerEntity temp = result.get();
-            return new Customer(temp.getCustomer_id(), temp.getName(), temp.getMdp(), new Contact(temp.getEmail(), temp.getTel()), temp.getDtn());
+        Optional<JpaCustomerEntity> resultDb = jpaCustomerRepository.findByEmail(email);
+        if(resultDb.isPresent()){
+            JpaCustomerEntity temp = resultDb.get();
+            Customer result =  new Customer(temp.getName(), temp.getEmail(), temp.getMdp(), temp.getDtn());
+            result.setId(temp.getCustomerId());
+            return result;
         }
         return null;
     }
 
     @Override
     public Customer findById(int id) {
-        Optional<JpaCustomerEntity> result = jpaCustomerRepository.findById(id);
-        if(result.isPresent()){
-            JpaCustomerEntity temp = result.get();
-            return new Customer(temp.getCustomer_id(), temp.getName(), temp.getMdp(), new Contact(temp.getEmail(), temp.getTel()), temp.getDtn());
+        Optional<JpaCustomerEntity> resultDb = jpaCustomerRepository.findById(id);
+        if(resultDb.isPresent()){
+            JpaCustomerEntity temp = resultDb.get();
+            Customer result =  new Customer(temp.getName(), temp.getEmail(), temp.getMdp(), temp.getDtn());
+            result.setId(temp.getCustomerId());
+            return result;
         }
         return null;
     }
