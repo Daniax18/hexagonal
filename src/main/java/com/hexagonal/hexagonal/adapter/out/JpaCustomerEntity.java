@@ -9,7 +9,8 @@ import java.sql.Date;
 public class JpaCustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer customer_id;
+    @Column(name = "customer_id")
+    private Integer customerId;
 
     @Column(name = "customer_name")
     private String name;
@@ -20,29 +21,25 @@ public class JpaCustomerEntity {
     @Column(name = "customer_email")
     private String email;
 
-    @Column(name = "customer_tel")
-    private String tel;
-
     @Column(name = "customer_dtn")
     private Date dtn;
 
     public JpaCustomerEntity() {
     }
 
-    public JpaCustomerEntity(String name, String mdp, String email, String tel, Date dtn) {
+    public JpaCustomerEntity(String name, String mdp, String email, Date dtn) {
         this.name = name;
         this.mdp = mdp;
         this.email = email;
-        this.tel = tel;
         this.dtn = dtn;
     }
 
-    public Integer getCustomer_id() {
-        return customer_id;
+    public Integer getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer_id(Integer customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
     }
 
     public String getName() {
@@ -67,14 +64,6 @@ public class JpaCustomerEntity {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
     }
 
     public Date getDtn() {
