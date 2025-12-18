@@ -1,7 +1,7 @@
 package com.hexagonal.hexagonal.adapter.in;
 
-import com.hexagonal.hexagonal.adapter.in.dto.CustomerDTO;
-import com.hexagonal.hexagonal.adapter.in.dto.CustomerResponse;
+import com.hexagonal.hexagonal.adapter.in.dto.customer.CustomerDTO;
+import com.hexagonal.hexagonal.adapter.in.dto.customer.CustomerResponse;
 import com.hexagonal.hexagonal.domain.model.Customer;
 import com.hexagonal.hexagonal.domain.port.in.CustomerUseCaseInterface;
 import com.hexagonal.hexagonal.domain.port.in.CustomerUseCaseInterface.CustomerCommand;

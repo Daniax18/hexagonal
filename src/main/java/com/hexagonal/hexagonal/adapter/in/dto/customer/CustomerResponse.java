@@ -1,4 +1,4 @@
-package com.hexagonal.hexagonal.adapter.in.dto;
+package com.hexagonal.hexagonal.adapter.in.dto.customer;
 
 import java.sql.Date;
 

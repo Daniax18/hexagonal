@@ -1,4 +1,4 @@
-package com.hexagonal.hexagonal.adapter.out;
+package com.hexagonal.hexagonal.adapter.out.customer;
 
 import com.hexagonal.hexagonal.domain.model.Customer;
 import com.hexagonal.hexagonal.domain.port.out.CustomerRepository;

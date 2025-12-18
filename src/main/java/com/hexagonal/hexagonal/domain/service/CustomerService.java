@@ -16,7 +16,7 @@ public class CustomerService implements CustomerUseCaseInterface {
     }
 
     @Override
-    public void create(CustomerCommand toCreate) {
+    public void create(CustomerCommand toCreate) throws IllegalArgumentException{
         if(toCreate.mdp().compareTo(toCreate.mdpConfirmed()) != 0) {
             throw new IllegalArgumentException("Password not matched");
         }

@@ -1,4 +1,4 @@
-package com.hexagonal.hexagonal.adapter.out;
+package com.hexagonal.hexagonal.adapter.out.customer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
